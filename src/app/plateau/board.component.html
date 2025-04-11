@@ -1,0 +1,16 @@
+<div class="grid">
+    <div *ngFor="let row of [].constructor(gridSize * 2 - 1); let y = index" class="row">
+      <div *ngFor="let col of [].constructor(gridSize * 2 - 1); let x = index"
+           [ngClass]="{
+             'cell': isEven(x) && isEven(y),
+             'bridge-horizontal': !isEven(x) && isEven(y),
+             'bridge-vertical': isEven(x) && !isEven(y),
+             'intersection': !isEven(x) && !isEven(y)
+           }"
+           (click)="isEven(x) && isEven(y) && onCellClick(x / 2, y / 2)">
+        <div *ngIf="isEven(x) && isEven(y) && isPieceAt(x / 2, y / 2)"
+             class="piece"
+             [ngClass]="isPieceAt(x / 2, y / 2)?.color"></div>
+      </div>
+    </div>
+  </div>

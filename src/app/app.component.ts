@@ -7,5 +7,20 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'pontu';
+
+  messages: { text: string; sender: string; time: string }[] = [];
+  newMessage: string = '';
+
+  sendMessage() {
+    if (this.newMessage.trim() !== '') {
+      const messageData = {
+        text: this.newMessage,
+        sender: 'Moi',
+        time: new Date().toLocaleTimeString()
+      };
+      this.messages.push(messageData);
+      this.newMessage = '';
+    }
+  }
+
 }
