@@ -19,6 +19,7 @@ export class BoardComponent implements OnInit{
   gridSize = 6;
   pieces: Piece[] = [];
   selectedPiece: Piece | null = null;
+  cellTypes: string = 'nothing';
 
   ngOnInit(): void {
     this.initializeGame();
@@ -56,4 +57,28 @@ export class BoardComponent implements OnInit{
   isEven(n: number): boolean {
     return n % 2 === 0;
   }
+
+  getCellClass(x: number, i: number, count: number): string {
+    const y = count - 1 - i;
+  
+    const isEvenX = this.isEven(x);
+    const isEvenY = this.isEven(y);
+  
+    if (isEvenX && isEvenY){
+      this.cellTypes = 'cell';
+      return 'cell';
+    } 
+    if (!isEvenX && isEvenY) {
+      this.cellTypes = 'bridge-horizontal';
+      return 'bridge-horizontal';
+    }
+
+    if (isEvenX && !isEvenY){
+      this.cellTypes = 'bridge-vertical';
+      return 'bridge-vertical';
+    }
+    this.cellTypes = 'intersection';
+    return 'intersection';
+  }
+  
 }
