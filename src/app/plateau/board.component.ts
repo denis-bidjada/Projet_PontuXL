@@ -26,9 +26,9 @@ export class BoardComponent implements OnInit{
 
   initializeGame(): void {
     this.pieces = [
-      { color: 'red', x: 0, y: 0 },
+      { color: 'red', x: 1, y: 1 },
       { color: 'red', x: 2, y: 4 },
-      { color: 'yellow', x: 4, y: 0 },
+      { color: 'yellow', x: 4, y: 1 },
       { color: 'yellow', x: 4, y: 4 },
       { color: 'green', x: 4, y: 1 },
       { color: 'green', x: 2, y: 1 },
@@ -38,6 +38,7 @@ export class BoardComponent implements OnInit{
   }
 
   onCellClick(x: number, y: number): void {
+    console.log(`Cell clicked: (${x}, ${y})`);
     const piece = this.pieces.find(p => p.x === x && p.y === y);
     if (piece) {
       this.selectedPiece = piece;
